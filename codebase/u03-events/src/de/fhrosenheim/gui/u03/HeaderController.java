@@ -1,19 +1,18 @@
 package de.fhrosenheim.gui.u03;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 
 
 /**
@@ -24,27 +23,27 @@ import javafx.scene.layout.Pane;
 public class HeaderController implements Initializable {
     
     private static final Logger LOGGER = Logger.getLogger(HeaderController.class.getName());
-    
+
     @FXML
-    private ComboBox<String> seriesInput;
+    private StringProperty seriesInput = new SimpleStringProperty();
     @FXML
-    private ComboBox<String> measurementInput;
+    private StringProperty measurementInput = new SimpleStringProperty();
     @FXML
-    private ComboBox<String> hostInput;
+    private StringProperty hostInput = new SimpleStringProperty();
     @FXML
-    private ComboBox<String> processInput;
+    private StringProperty processInput = new SimpleStringProperty();
     @FXML
-    private ComboBox<String> typeInput;
+    private StringProperty typeInput = new SimpleStringProperty();
     @FXML
-    private ComboBox<String> metricInput;
+    private StringProperty metricInput = new SimpleStringProperty();
     @FXML
     private TextField excludeInput;
     @FXML
-    private ComboBox<String> samplingInput;
+    private StringProperty samplingInput = new SimpleStringProperty();
     @FXML
-    private ComboBox<String> aggregationInput;
+    private StringProperty aggregationInput = new SimpleStringProperty();
     @FXML
-    private ComboBox<String> graphInput;
+    private StringProperty graphInput = new SimpleStringProperty();
     @FXML
     private DatePicker fromInput;
     @FXML
@@ -55,7 +54,114 @@ public class HeaderController implements Initializable {
     private Button generateGraphButton;
     @FXML
     private Pane rootPane;
-    
+
+    public String getSeriesInput() {
+        return seriesInput.get();
+    }
+
+    public StringProperty seriesInputProperty() {
+        return seriesInput;
+    }
+
+    public void setSeriesInput(String seriesInput) {
+        this.seriesInput.set(seriesInput);
+    }
+    public String getMeasurementInput() {
+        return measurementInput.get();
+    }
+
+    public StringProperty measurementInputProperty() {
+        return measurementInput;
+    }
+
+    public void setMeasurementInput(String measurementInput) {
+        this.measurementInput.set(measurementInput);
+    }
+
+    public String getHostInput() {
+        return hostInput.get();
+    }
+
+    public StringProperty hostInputProperty() {
+        return hostInput;
+    }
+
+    public void setHostInput(String hostInput) {
+        this.hostInput.set(hostInput);
+    }
+
+    public String getProcessInput() {
+        return processInput.get();
+    }
+
+    public StringProperty processInputProperty() {
+        return processInput;
+    }
+
+    public void setProcessInput(String processInput) {
+        this.processInput.set(processInput);
+    }
+
+    public String getTypeInput() {
+        return typeInput.get();
+    }
+
+    public StringProperty typeInputProperty() {
+        return typeInput;
+    }
+
+    public void setTypeInput(String typeInput) {
+        this.typeInput.set(typeInput);
+    }
+
+    public String getMetricInput() {
+        return metricInput.get();
+    }
+
+    public StringProperty metricInputProperty() {
+        return metricInput;
+    }
+
+    public void setMetricInput(String metricInput) {
+        this.metricInput.set(metricInput);
+    }
+
+    public String getSamplingInput() {
+        return samplingInput.get();
+    }
+
+    public StringProperty samplingInputProperty() {
+        return samplingInput;
+    }
+
+    public void setSamplingInput(String samplingInput) {
+        this.samplingInput.set(samplingInput);
+    }
+
+    public String getAggregationInput() {
+        return aggregationInput.get();
+    }
+
+    public StringProperty aggregationInputProperty() {
+        return aggregationInput;
+    }
+
+    public void setAggregationInput(String aggregationInput) {
+        this.aggregationInput.set(aggregationInput);
+    }
+
+    public String getGraphInput() {
+        return graphInput.get();
+    }
+
+    public StringProperty graphInputProperty() {
+        return graphInput;
+    }
+
+    public void setGraphInput(String graphInput) {
+        this.graphInput.set(graphInput);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         generateGraphButton.setOnAction(this::onGenerateGraph);
@@ -76,8 +182,8 @@ public class HeaderController implements Initializable {
         LOGGER.log(Level.INFO, "on generate graph: {0}", toSettings());
     }
 
-    private HeaderSettings toSettings() {
-        HeaderSettings result = new HeaderSettings();
+    private HeaderSettingsModel toSettings() {
+        HeaderSettingsModel result = new HeaderSettingsModel();
         result.setSeries(seriesInput.getEditor().getText());
         result.setMeasurement(measurementInput.getEditor().getText());
         result.setHost(hostInput.getEditor().getText());
