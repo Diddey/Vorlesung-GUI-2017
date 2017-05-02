@@ -1,12 +1,9 @@
 package de.fhrosenheim.gui.u03;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
@@ -17,33 +14,37 @@ import java.util.logging.Logger;
 
 /**
  * Controller fuer die Header-Maske
- * 
+ *
  * @author dominik.haas
  */
 public class HeaderController implements Initializable {
-    
+
     private static final Logger LOGGER = Logger.getLogger(HeaderController.class.getName());
 
+    private final HeaderSettingsModel model = new HeaderSettingsModel();
+
     @FXML
-    private StringProperty seriesInput = new SimpleStringProperty();
+    private ComboBox<String> seriesInput;
     @FXML
-    private StringProperty measurementInput = new SimpleStringProperty();
+    private ComboBox<String> measurementInput;
     @FXML
-    private StringProperty hostInput = new SimpleStringProperty();
+    private ComboBox<String> hostInput;
     @FXML
-    private StringProperty processInput = new SimpleStringProperty();
+    private ComboBox<String> processInput;
     @FXML
-    private StringProperty typeInput = new SimpleStringProperty();
+    private ComboBox<String> typeInput;
     @FXML
-    private StringProperty metricInput = new SimpleStringProperty();
+    private ComboBox<String> metricInput;
     @FXML
     private TextField excludeInput;
     @FXML
-    private StringProperty samplingInput = new SimpleStringProperty();
+    private TextField textfieldInput;
     @FXML
-    private StringProperty aggregationInput = new SimpleStringProperty();
+    private ComboBox<String> samplingInput;
     @FXML
-    private StringProperty graphInput = new SimpleStringProperty();
+    private ComboBox<String> aggregationInput;
+    @FXML
+    private ComboBox<String> graphInput;
     @FXML
     private DatePicker fromInput;
     @FXML
@@ -55,116 +56,9 @@ public class HeaderController implements Initializable {
     @FXML
     private Pane rootPane;
 
-    public String getSeriesInput() {
-        return seriesInput.get();
-    }
-
-    public StringProperty seriesInputProperty() {
-        return seriesInput;
-    }
-
-    public void setSeriesInput(String seriesInput) {
-        this.seriesInput.set(seriesInput);
-    }
-    public String getMeasurementInput() {
-        return measurementInput.get();
-    }
-
-    public StringProperty measurementInputProperty() {
-        return measurementInput;
-    }
-
-    public void setMeasurementInput(String measurementInput) {
-        this.measurementInput.set(measurementInput);
-    }
-
-    public String getHostInput() {
-        return hostInput.get();
-    }
-
-    public StringProperty hostInputProperty() {
-        return hostInput;
-    }
-
-    public void setHostInput(String hostInput) {
-        this.hostInput.set(hostInput);
-    }
-
-    public String getProcessInput() {
-        return processInput.get();
-    }
-
-    public StringProperty processInputProperty() {
-        return processInput;
-    }
-
-    public void setProcessInput(String processInput) {
-        this.processInput.set(processInput);
-    }
-
-    public String getTypeInput() {
-        return typeInput.get();
-    }
-
-    public StringProperty typeInputProperty() {
-        return typeInput;
-    }
-
-    public void setTypeInput(String typeInput) {
-        this.typeInput.set(typeInput);
-    }
-
-    public String getMetricInput() {
-        return metricInput.get();
-    }
-
-    public StringProperty metricInputProperty() {
-        return metricInput;
-    }
-
-    public void setMetricInput(String metricInput) {
-        this.metricInput.set(metricInput);
-    }
-
-    public String getSamplingInput() {
-        return samplingInput.get();
-    }
-
-    public StringProperty samplingInputProperty() {
-        return samplingInput;
-    }
-
-    public void setSamplingInput(String samplingInput) {
-        this.samplingInput.set(samplingInput);
-    }
-
-    public String getAggregationInput() {
-        return aggregationInput.get();
-    }
-
-    public StringProperty aggregationInputProperty() {
-        return aggregationInput;
-    }
-
-    public void setAggregationInput(String aggregationInput) {
-        this.aggregationInput.set(aggregationInput);
-    }
-
-    public String getGraphInput() {
-        return graphInput.get();
-    }
-
-    public StringProperty graphInputProperty() {
-        return graphInput;
-    }
-
-    public void setGraphInput(String graphInput) {
-        this.graphInput.set(graphInput);
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        generateGraphButton.setOnAction(this::onGenerateGraph);
+        /*generateGraphButton.setOnAction(this::onGenerateGraph);
         //Beispiel für zwei Event Filter und deren Reihenfolge
         //Der Event Filter auf oberer Ebene blockiert das kleine "a".
         rootPane.addEventFilter(KeyEvent.KEY_TYPED, e -> {
@@ -176,13 +70,57 @@ public class HeaderController implements Initializable {
         seriesInput.addEventFilter(KeyEvent.KEY_TYPED, e -> {
             LOGGER.info("KEY_PRESSED on seriesInput");
         });
-    }
-    
-    public void onGenerateGraph(ActionEvent e) {
-        LOGGER.log(Level.INFO, "on generate graph: {0}", toSettings());
+*/
+        seriesInput.valueProperty().bindBidirectional(
+                model.seriesProperty()
+        );
+        measurementInput.valueProperty().bindBidirectional(
+                model.measurementProperty()
+        );
+        hostInput.valueProperty().bindBidirectional(
+                model.hostProperty()
+        );
+        processInput.valueProperty().bindBidirectional(
+                model.processProperty()
+        );
+        typeInput.valueProperty().bindBidirectional(
+                model.typeProperty()
+        );
+        metricInput.valueProperty().bindBidirectional(
+                model.metricProperty()
+        );
+        samplingInput.valueProperty().bindBidirectional(
+                model.samplingProperty()
+        );
+        aggregationInput.valueProperty().bindBidirectional(
+                model.aggregationProperty()
+        );
+        graphInput.valueProperty().bindBidirectional(
+                model.graphProperty()
+        );
+        excludeInput.textProperty().bindBidirectional(
+                model.excludeProperty()
+        );
+        textfieldInput.textProperty().bindBidirectional(
+                model.textfieldProperty()
+        );
+        fromInput.valueProperty().bindBidirectional(
+                model.fromProperty()
+        );
+        untilInput.valueProperty().bindBidirectional(
+                model.untilProperty()
+        );
+        expertModeInput.selectedProperty().bindBidirectional(
+                model.expertModeProperty()
+        );
+
     }
 
-    private HeaderSettingsModel toSettings() {
+    public void onGenerateGraph(ActionEvent e) {
+        LOGGER.log(Level.INFO, "on generate graph: {0}", model);
+    }
+
+    /*private HeaderSettingsModel toSettings() {
         HeaderSettingsModel result = new HeaderSettingsModel();
         result.setSeries(seriesInput.getEditor().getText());
         result.setMeasurement(measurementInput.getEditor().getText());
@@ -192,6 +130,7 @@ public class HeaderController implements Initializable {
         result.setMetric(metricInput.getEditor().getText());
         result.setExclude(excludeInput.getText());
         result.setExpertMode(expertModeInput.isSelected());
+        result.setTextfield(textfieldInput.getText());
         
         result.setSampling(samplingInput.getSelectionModel().getSelectedItem());
         result.setAggregation(aggregationInput.getSelectionModel().getSelectedItem());
@@ -201,7 +140,7 @@ public class HeaderController implements Initializable {
         result.setUntil(untilInput.getValue());
         
         return result;
-    }
+    }*/
 
 
 }

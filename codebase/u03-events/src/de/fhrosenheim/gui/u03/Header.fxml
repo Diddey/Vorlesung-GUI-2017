@@ -47,7 +47,7 @@
       <Label text="Exclude" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <ComboBox fx:id="metricInput" editable="true" layoutX="118.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <TextField fx:id="excludeInput" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-      <TextField maxHeight="1.7976931348623157E308" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2" />
+      <TextField fx:id="textfieldInput" maxHeight="1.7976931348623157E308" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2" />
       <CheckBox fx:id="expertModeInput" mnemonicParsing="false" text="Expert Mode (Lucene Query language)" GridPane.columnIndex="3" GridPane.rowIndex="5" />
       <Label minWidth="-Infinity" text="Sampling" GridPane.columnIndex="4" GridPane.rowIndex="1" />
       <Label minWidth="-Infinity" text="Aggregation" GridPane.columnIndex="4" GridPane.rowIndex="2" />
