@@ -23,6 +23,7 @@ public class HeaderController implements Initializable {
 
     private final HeaderSettingsModel model = new HeaderSettingsModel();
 
+
     @FXML
     private ComboBox<String> seriesInput;
     @FXML
